@@ -1,6 +1,9 @@
 package com.example.HomeCozaStore.service;
 
+import com.example.HomeCozaStore.entity.CategoryEntity;
+import com.example.HomeCozaStore.entity.ColorEntity;
 import com.example.HomeCozaStore.entity.ProductEntity;
+import com.example.HomeCozaStore.entity.SizeEntity;
 import com.example.HomeCozaStore.payload.request.ProductRequest;
 import com.example.HomeCozaStore.payload.response.ProductResponse;
 import com.example.HomeCozaStore.repository.ProductRepository;
@@ -32,7 +35,30 @@ public class ProductService implements IProductService {
 
     @Override
     public boolean addProduct(ProductRequest productRequest) {
+        try {
+            ProductEntity productEntity = new ProductEntity();
+            productEntity.setName(productRequest.getName());
+            productEntity.setDescription(productRequest.getDesc());
+            productEntity.setPrice(productRequest.getPrice());
+            productEntity.setQuantity(productRequest.getQuantity());
 
-        return false;
+            SizeEntity sizeEntity = new SizeEntity();
+            sizeEntity.setId(productRequest.getSizeId());
+
+            ColorEntity colorEntity = new ColorEntity();
+            colorEntity.setId(productRequest.getColorId());
+
+            CategoryEntity categoryEntity = new CategoryEntity();
+            categoryEntity.setId(productRequest.getCategoryId());
+
+            productEntity.setColor(colorEntity);
+            productEntity.setSize(sizeEntity);
+            productEntity.setCategory(categoryEntity);
+
+            productRepository.save(productEntity);
+            return true;
+        }catch(Exception e){
+            return false;
+        }
     }
 }

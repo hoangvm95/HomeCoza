@@ -22,7 +22,7 @@ public class SizeController {
     @GetMapping("")
     public ResponseEntity <?> getAllSize(){
         BaseResponse response = new BaseResponse();
-        response.setData(response.getData());
+        response.setData(iSizeService.getAllSize());
 
         String data = gson.toJson(response);
         logger.info(data);

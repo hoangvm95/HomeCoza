@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 @RestController
@@ -21,9 +22,18 @@ public class ProductController {
     private String rootPath;
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getProductById (@PathVariable int id){
+    public ResponseEntity<?> getDetailProduct(@PathVariable int id){
+        BaseResponse response = new BaseResponse();
+        response.setData(iProductService.getDetailProduct(id));
+        return new ResponseEntity<>(response,HttpStatus.OK);
+    }
+
+    @GetMapping("category/{id}")
+    public ResponseEntity<?> getProductById (HttpServletRequest request, @PathVariable int id){
+
+        String host = request.getHeader("host");
         BaseResponse baseResponse = new BaseResponse();
-        baseResponse.setData(iProductService.getProductByCategoryId(id));
+        baseResponse.setData(iProductService.getProductByCategoryId(host,id));
         return new ResponseEntity<>(baseResponse, HttpStatus.OK);
     }
 

@@ -6,7 +6,24 @@ public class ProductResponse {
     private String name;
     private double price;
     private String image;
+    private String desc;
+    private String imageDetail;
 
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+
+    public String getImageDetail() {
+        return imageDetail;
+    }
+
+    public void setImageDetail(String imageDetail) {
+        this.imageDetail = imageDetail;
+    }
 
     public int getId() {
         return id;

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/order")
 public class OrderController {
     @PostMapping("")
-    public ResponseEntity<?> addProduct(@RequestBody OrderRequest orderRequest){
+    public ResponseEntity<?> addOrder(@RequestBody OrderRequest orderRequest){
         BaseResponse response = new BaseResponse();
 
         return new ResponseEntity<>(response, HttpStatus.OK);
